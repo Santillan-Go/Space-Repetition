@@ -1,0 +1,51 @@
+.main-signUp{
+
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 100%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+
+    color: white;
+}
+
+.success{
+    color: rgb(33, 233, 33);
+    font-weight: 500;
+    font-size: 1.3rem;
+    padding: 7px;
+}
+
+.login-btn{
+    width: 200px;
+    height: 50px;
+    border-radius: 1rem;
+    padding: .3rem;
+    border: none;
+    background-color: #138ef9;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.login-btn:hover{
+ cursor: pointer;
+ background-color:white;
+ color: #4b6cb7;   
+}
+
+.contaiter-form{
+
+    height: 80vh;
+    width: 100%;
+    padding: .5rem;
+}

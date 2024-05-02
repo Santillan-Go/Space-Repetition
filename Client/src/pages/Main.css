@@ -1,0 +1,111 @@
+.decks-quantity-h{
+    max-width: 600px;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    box-shadow: .10rem .10rem 1rem  white;
+}
+
+.log{
+  width: 55px;
+  height: 55px;
+
+  align-self: center;
+}
+.decks-quantity-h h2{
+  font-size: 1.3rem;
+  font-weight: 900;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color: var(--main-color);
+
+}
+.title-decks{
+  font-size: 2rem;
+  color: white;
+  margin-top: 1rem;
+}
+
+
+.decks-main{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(100px,120px));
+    justify-content: center;
+   gap: 1rem;
+  /*  margin:2rem 0; */ 
+  margin-top: 1rem;
+  margin-bottom:  var(--header-height);
+   overflow-x: hidden;
+   overflow-y: auto;
+
+}
+/* .full-viewport{
+  height: 100vh;
+  width: 100vw;
+} */
+
+.no-decks{
+  width: 100%;
+}
+
+@media screen and (min-width:450px){
+  .decks-main{
+
+    grid-template-columns: repeat(auto-fit,minmax(200px,250px));
+    margin: 4rem auto;
+  }
+
+  .decks-quantity-h{
+    height: 100px;
+    margin-top: 1.2rem;
+  }
+.log{
+
+  width: 70px;
+  height: 70px;
+}
+.decks-quantity-h h2{
+  font-size: 1.8rem;
+}
+
+}
+
+
+@media screen and (min-width:1000px){
+  .decks-main{
+
+    grid-template-columns: repeat(auto-fit,minmax(300px,350px));
+    margin: 4rem auto;
+  }
+  .decks-quantity-h h2{
+    font-size: 2rem;
+  }
+
+}
+
+
+/* Para navegadores que admiten la personalización del scroll */
+/* Establece el grosor del scrollbar y su color */
+::-webkit-scrollbar {
+    width: 8px; /* Grosor del scrollbar */
+  }
+  
+  /* Establece el color de la pista del scrollbar */
+  ::-webkit-scrollbar-track {
+    background: #ffffff; 
+  }
+  
+  /* Establece el color del mango del scrollbar */
+  ::-webkit-scrollbar-thumb {
+    background: #666666; 
+  }
+  
+  /* Establece el grosor del scrollbar */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color); 
+    cursor: default;
+  }
+  

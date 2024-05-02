@@ -1,0 +1,20 @@
+.Loader_Form{
+    
+    max-width: 400px;
+    height: 90%;
+
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.Loader_Form img{
+    width: 100px;
+    height: 100px;
+}

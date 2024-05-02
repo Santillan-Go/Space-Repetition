@@ -1,0 +1,49 @@
+
+
+{
+    "users": [
+        {
+       " username": "Carlos",
+        "password": "1986?",
+        "id": 1,
+        "decks": [
+                {
+                "nameDeck": "English||1",
+                "id": 1,
+                "cards": [
+                        {
+                    "id": 1,
+                    "front": "Mind",
+                    "back": "Mente",
+                    "nextTime": "2024-04-29"
+                        },
+                        {
+                    "id": 2,
+                    "front": "Run",
+                    "back": "Correr",
+                    "nextTime": "2024-04-29"
+                        }
+                    ]
+                },
+                {
+                "nameDeck": "English||2",
+                "id": 2,
+                "cards": [
+                        {
+                    "id": 1,
+                    "front": "Literally",
+                    "back": "Literalmente",
+                    "nextTime": "2024-04-29"
+                        },
+                        {
+                    "id": 2,
+                    "front": "Jelous",
+                    "back": "Celoso",
+                    "nextTime": "2024-04-29"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
