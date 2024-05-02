@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "THIS IS THE APP FOR REST API OF DECKS",
   "type": "module",
-  "main": "App.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node App.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "SANTILLAN-C",
