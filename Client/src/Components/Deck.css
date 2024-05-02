@@ -29,10 +29,17 @@ border: thin solid white;
 }
 
 .deck-info h3{
+  font-size: medium;
 font-weight:900;
+text-overflow: ellipsis;
 }
 
+.deck-article .deck-info h3{
+  text-overflow: ellipsis;
+  text-wrap: wrap;
+  width: 100%;
 
+}
 
   
 

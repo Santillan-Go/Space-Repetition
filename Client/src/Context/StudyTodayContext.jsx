@@ -20,8 +20,8 @@ const StudyTodayContextProvider=({children})=>{
         let {name,cards}=deck; 
         //EL PROBLEMA ES STUDYTODAY
         //   console.log(today, "from showCardFocusOn FOR STUDY VARIABLE STUDY")
-        console.log(studyToday, "THIS IS THE LAST ONE");
-        console.log("---------------")
+        
+   
          setFocus(studyToday[i]);
         setAnswer(false);
           setI((prev)=>{

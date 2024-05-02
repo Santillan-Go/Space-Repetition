@@ -28,25 +28,6 @@ console.log("I AM THE REAL--ONE",studyToday)
 UpdateDeckCards(UpdataCard)
   }
 
-  // const showCardFocusOn=()=>{
-  //   //EL PROBLEMA ES STUDYTODAY
-  //   //   console.log(today, "from showCardFocusOn FOR STUDY VARIABLE STUDY")
-  //   console.log(studyToday, "THIS IS THE LAST ONE");
-    
-  //   console.log("---------------")
-  //    setFocus(cards[i]);
-  //   setAnswer(false);
-  //     setI((prev)=>{
-  //         console.log(prev,"prev");
-  //         if(prev>= cards.length) {
-  //         setFocus(cards[0])
-  //          return 0
-  //        }
-  //         return prev +1
-      
-  //     });
-  //   }
-
 
 
   return (

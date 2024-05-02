@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import Form_User from "../Components/Form_User";
 import "./SignUp.css";
 import { useNavigate } from "react-router";
+import Loader_Form from "../Components/Loader_Form";
 
 function SingUp() {
   const [signup, setSignup] = useState("");
   const [success, setSuccess] = useState(false);
-const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
+const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-back.onrender.com";
+const [create,setCreate]=useState(false);
   const navigate = useNavigate();
 
   const goSomewhere=(e, where)=>{
@@ -14,10 +16,13 @@ const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
     }
 
   const createUser = async (newUser) => {
-    
+    setCreate(true)
      fetch(`${URL}/user`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
+      credentials: 'same-origin',
+      mode:"cors",
+
       body: JSON.stringify(newUser),
     })
 
@@ -25,6 +30,7 @@ const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
 
 if(res.ok){
   setSuccess(true)
+  
 return res.json()
  
 }else{
@@ -32,7 +38,9 @@ return res.json()
 }
 
     })
-    .then(json=>console.log(json))
+    .then(json=>{console.log(json)
+    
+    setCreate(false)})
 
     .catch(err=>{
 
@@ -53,16 +61,7 @@ return res.json()
     if (signup) {
 
       createUser(signup)
-      // const users = JSON.parse(localStorage.getItem("users")) || [];
-      // localStorage.setItem("users", JSON.stringify([...users, signup]));
-      // setTimeout(() => {
-      //   setSuccess(true);
-      // }, 2000);
-
-      // setTimeout(() => {
-      //   setSuccess(false);
-      //   navigate("/login");
-      // }, 4000);
+     
     }
   }, [signup]);
 
@@ -71,7 +70,8 @@ return res.json()
       <h1>Crear Cuenta</h1>
 
 <div className="contaiter-form">
-   <Form_User Status={setSignup}  nameBtn={"Crear Cuenta"}/>
+  {!create&& <Form_User Status={setSignup}  nameBtn={"Crear Cuenta"}/>}
+   {create&&<Loader_Form text={"Creando Cuenta..."}/>}
 </div>
    {/*FINISH COMPONEN FORM*/}
       <div className="success">

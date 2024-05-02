@@ -25,7 +25,7 @@ app.get("/",async(req,res)=>{
 
 //GET ONE USER
 app.get("/one-user/:id",async(req,res)=>{
-let id=parseInt(req.params.id);
+let id=req.params.id;
 const body=req.body;
     if(id){
 const result=await User_DB_M.getOneUserById({id});

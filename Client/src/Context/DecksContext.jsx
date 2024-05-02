@@ -107,10 +107,7 @@ const DeckProvider=({children})=>{
 
   const {user,setUser}=useContext(UserDataInContext);
 
-  useEffect(() => {
-   console.log(user,"FROM DECKCONTEXT USER API")
 
-  }, [user])
 
   
 const mazos=user.decks;

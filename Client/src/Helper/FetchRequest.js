@@ -22,6 +22,7 @@ const createOneDeck=async(url,deck)=>{
 const res= await fetch(url,{
     method:"POST",
     headers:{"content-Type":"application/json"},
+    mode:"cors",
     body:JSON.stringify(deck)
 });
 const json=await res.json()
@@ -34,6 +35,8 @@ const createOneCard=async(url,card)=>{
 const res=await fetch(url,{
     method:"POST",
     headers:{"content-Type":"application/json"},
+    mode:"cors",
+    credentials: 'same-origin',
     body:JSON.stringify(card)
 
 })
@@ -48,6 +51,8 @@ const updateCardOne=async(url,input)=>{
     const res=await fetch(url,{
         method:"PATCH",
         headers:{"content-Type":"application/json"},
+        mode:"cors",
+        credentials: 'same-origin',
         body:JSON.stringify(input)
     
     })

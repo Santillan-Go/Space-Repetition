@@ -11,7 +11,7 @@ function Login() {
   const [getOne, setGetOne] = useState({});
 const [loaderIn, setLoaderIn] = useState(false)
   const {user,setUser} = useContext(UserDataInContext)
-  const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
+  const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-back.onrender.com";
 const goSomewhere=(e, where)=>{
 navigate(where)
 }
@@ -20,7 +20,9 @@ setLoaderIn(true)
     fetch(`${URL}/one-user`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(user),
+      mode:"cors",
+      credentials: 'same-origin',
+      body: JSON.stringify(user)
     })
       .then((res) => {
         if (res.ok) {
@@ -67,7 +69,7 @@ setLoaderIn(true)
       <h1>Iniciar sesión</h1>
       <div className="contaiter-form">
 {!loaderIn && <Form_User Status={setLogin}  nameBtn={"Iniciar sesión"}/>}
-   {loaderIn&&<Loader_Form/>}
+   {loaderIn&&<Loader_Form text={"Verificando Cuenta..."}/>}
 </div>
       <div className="failed">{found && <p>This acount doesn't exist</p>}</div>
       <button onClick={(e)=>goSomewhere(e,"/signup")} className="login-btn">Crear Cuenta</button>

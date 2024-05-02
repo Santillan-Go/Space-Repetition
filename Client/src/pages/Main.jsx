@@ -11,7 +11,6 @@ function Main() {
 const {decks} =useContext(DeckContext);
 
 
-console.log(decks, "From main")
   return (
     <>
     <section className="decks-quantity-h">

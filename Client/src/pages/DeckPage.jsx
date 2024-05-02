@@ -24,7 +24,7 @@ const inU=JSON.parse(localStorage.getItem("in"));
     //MODASLS
     const [study,setStudy]=useState(false)
    const [create,setCreate]=useState(false)
-   const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
+   const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-back.onrender.com";
    //-------
   // const [i,setI]=useState(0);
   //ID DECK
