@@ -1,10 +1,16 @@
-import { MongoClient } from "mongodb";
+import { MongoClient,ServerApiVersion } from "mongodb";
 
 const uri =
   "mongodb+srv://santillango10405:JcAbGlpOSDkOQkh9@clustercarlos.8dtccyu.mongodb.net/?retryWrites=true&w=majority&appName=ClusterCarlos";
 
 async function connectDB() {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
   try {
     await client.connect();
 
