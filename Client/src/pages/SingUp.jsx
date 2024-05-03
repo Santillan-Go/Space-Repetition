@@ -8,7 +8,7 @@ function SingUp() {
   const [signup, setSignup] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, seterror] = useState(false)
-const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
+const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-backend.onrender.com";
 const [create,setCreate]=useState(false);
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const [create,setCreate]=useState(false);
 
   const createUser = async (newUser) => {
     setCreate(true)
-     fetch("http://localhost:4000/users", {
+     fetch(`${URL}/users`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       credentials: 'same-origin',
