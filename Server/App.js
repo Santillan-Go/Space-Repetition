@@ -25,7 +25,7 @@ app.get("/",async(req,res)=>{
 
 //GET ONE USER
 app.get("/one-user/:id",async(req,res)=>{
-let id=req.params.id;
+let id=parseInt(req.params.id);
 const body=req.body;
     if(id){
 const result=await User_DB_M.getOneUserById({id});
@@ -64,6 +64,10 @@ app.post("/one-user/",async(req,res)=>{
 app.post("/users",async(req,res)=>{
     let input=req.body;
     input={...input,decks:[]}
+    if(!input._id){
+input._id=Date.now();
+    }
+    
     const result=await User_DB_M.createOneUser({input});
     if(result){
     res.json(result);
