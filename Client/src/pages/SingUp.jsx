@@ -17,7 +17,7 @@ const [create,setCreate]=useState(false);
 
   const createUser = async (newUser) => {
     setCreate(true)
-     fetch(`${URL}/user`, {
+     fetch(`${URL}/users`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       credentials: 'same-origin',
@@ -60,7 +60,7 @@ return res.json()
   useEffect(() => {
     if (signup) {
 
-      createUser(signup)
+      createUser({...signup,_id:Date.now()})
      
     }
   }, [signup]);
