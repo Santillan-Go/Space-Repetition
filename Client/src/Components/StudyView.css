@@ -145,6 +145,7 @@ align-items: center;
    border: none;
    width: 60px;
    height: 60px;
+   margin-bottom: 2rem;
 }
 
 .btn-good{
@@ -186,9 +187,17 @@ align-items: center;
 }
 
 @media screen  and (min-width:450px) {
+
+    .card-content-study{
+        margin-top: .3rem;
+    }
+    .a-back{
+        width: 50px;
+        height: 50px;
+    }
     .show-answer-card{
         width: 200px;
-        height: 60px;
+        height: 50px;
         font-size: 1.3rem;
     }
     .btn-good{

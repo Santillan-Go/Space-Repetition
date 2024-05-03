@@ -48,7 +48,7 @@ return json
 
 
 const updateCardOne=async(url,input)=>{
-    const res=await fetch(url,{
+  try{  const res=await fetch(url,{
         method:"PATCH",
         headers:{"content-Type":"application/json"},
         mode:"cors",
@@ -59,8 +59,10 @@ const updateCardOne=async(url,input)=>{
     
     const json=await res.json();
     
-    return json
-
+    return json}
+catch(err){
+console.log(err)
+}
 }
 
 

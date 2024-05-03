@@ -51,11 +51,21 @@ const getOneUser= async({body})=>{
 
 const createOneUser= async({input})=>{
   
+
     
     const collection= db.collection(collectionName);
-    const result= await collection.insertOne(input);
+    
+    const userExist=await collection.findOne({username:input.username});
+
+    if(userExist){
+        console.log(userExist)
+return {mensaje:"Este usuario ya exite",error:true}
+    }else{
+         const result= await collection.insertOne(input);
     return result;
     
+    }
+   
   
     }
 

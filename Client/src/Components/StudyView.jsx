@@ -7,8 +7,7 @@ function StudyView({id,validate,study,setSudy,showCard,decks}) {
   const {studyToday,focus,showAnswer,setAnswer,showCardFocusOn}=useContext( StudyTodayContext);
    
  let { UpdateDeckCards}=showCard;
-//console.log(focus)
-console.log(studyToday,"from StudyView ");
+
 
 
 console.log("I AM THE REAL--ONE",studyToday)

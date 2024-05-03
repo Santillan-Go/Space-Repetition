@@ -7,7 +7,8 @@ import Loader_Form from "../Components/Loader_Form";
 function SingUp() {
   const [signup, setSignup] = useState("");
   const [success, setSuccess] = useState(false);
-const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-back.onrender.com";
+  const [error, seterror] = useState(false)
+const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
 const [create,setCreate]=useState(false);
   const navigate = useNavigate();
 
@@ -17,12 +18,11 @@ const [create,setCreate]=useState(false);
 
   const createUser = async (newUser) => {
     setCreate(true)
-     fetch(`${URL}/users`, {
+     fetch("http://localhost:4000/users", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       credentials: 'same-origin',
       mode:"cors",
-
       body: JSON.stringify(newUser),
     })
 
@@ -40,15 +40,17 @@ return res.json()
     })
     .then(json=>{console.log(json)
     
-    setCreate(false)})
+   
 
     .catch(err=>{
-
+seterror(true)
       console.log(err)
     })
     .finally(()=>{
+      setCreate(false)})
       setTimeout(() => {
-        setSuccess(false)
+        setSuccess(false);
+        seterror(false);
         //navigate("/login");
       }, 1500);
     })
@@ -75,7 +77,8 @@ return res.json()
 </div>
    {/*FINISH COMPONEN FORM*/}
       <div className="success">
-        {success && <p> Acount Created Successfully! </p>}
+        {success && <p> Cuenta Creada Con exitó </p>}
+        {error && <p>Este usuario ya existe</p>}
       </div>
       <button onClick={(e)=> goSomewhere(e,"/login")} className="login-btn">Iniciar sesion</button>
     </main>

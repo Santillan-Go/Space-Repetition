@@ -35,8 +35,9 @@ const inU=JSON.parse(localStorage.getItem("in"));
 
  const newDecks=decks.map(d => d.id===parseInt(id)? {...d,cards:[...d.cards,card]}:d);
  const addNewCard=async()=>{
-await  FechRequest.createOneCard(`http://localhost:4000/decks/cards/${inU._id}/${id}`,card);
- };
+const restult=await  FechRequest.createOneCard(`${URL}/decks/cards/${inU._id}/${id}`,card);
+console.log(restult) 
+};
 
  addNewCard();
 
@@ -50,13 +51,13 @@ setDeck(newDecks)
 const UpdateTimeDeck=decks.map(d=> d.id===parseInt(id)?{...d,cards:dCards}:d);
 const UpdateTime=async()=>{
   id=parseInt(id);
+console.log(nextTime,"next")
+console.log(lastReviewDate,"last")
 
-  console.log("user",inU._id);
-  console.log("Decks",id)
-  console.log("card",cardID)
 
-  await  FechRequest.updateCardOne(`${URL}/decks/cards/${inU._id}/${id}/${cardID}`,{nextTime,lastReviewDate});
-   };
+const result=  await  FechRequest.updateCardOne(`${URL}/decks/cards/${inU._id}/${id}/${cardID}`,{nextTime,lastReviewDate});
+console.log(result) 
+};
 UpdateTime();
   setDeck(UpdateTimeDeck);
  }

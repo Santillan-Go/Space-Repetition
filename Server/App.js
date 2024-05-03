@@ -63,19 +63,18 @@ app.post("/one-user/",async(req,res)=>{
 ///PARA CREAR USER
 app.post("/users",async(req,res)=>{
     let input=req.body;
-    input={...input,decks:[]}
+    input={...input,decks:[]} 
     if(!input._id){
 input._id=Date.now();
     }
     
     const result=await User_DB_M.createOneUser({input});
-    if(result){
+    if(!result.error){
     res.json(result);
     }else{
-res.status(404).json({error:true,Message:"This acount doesn't exist"})
+res.status(404).json(result)
     }
 
-        // res.json({msg:"GOOD"});
     })
 
 //PARA CREAR DECKS

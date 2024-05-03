@@ -11,7 +11,7 @@ function Layout() {
   const {user,setUser,setLoader,loader} = useContext(UserDataInContext);
 const navigate=useNavigate();
 const inUser=JSON.parse(localStorage.getItem("in"));
-const URL=import.meta.env.VITE_BACKEND||"http://localhost:4000";
+const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-backend.onrender.com";
 useEffect(() => {
   if(!user._id){
     setLoader(true)
@@ -58,7 +58,7 @@ console.log(decks,"I am in FORM")
 setDeck(oldstate=>{
 
   const CreateDeck=async()=>{
-      await FechRequest.createOneDeck(` http://localhost:4000/decks/${inUser._id}`,{name,cards:[],id:Date.now()})
+      await FechRequest.createOneDeck(`${URL}/decks/${inUser._id}`,{name,cards:[],id:Date.now()})
   }
 CreateDeck()
 setAdd(false);
