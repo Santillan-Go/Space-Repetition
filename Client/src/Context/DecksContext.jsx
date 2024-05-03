@@ -120,7 +120,7 @@ const mazos=user.decks;
 const [decks, setDeck] = useState(mazosStorage);
 useEffect(()=>{
 setDeck(mazos)
-},[user])
+},[user,user._id])
 
     const data={decks,setDeck,validate}
     return <DeckContext.Provider  value={data} >{children}</DeckContext.Provider>

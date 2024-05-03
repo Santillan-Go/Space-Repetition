@@ -34,15 +34,15 @@ setCard(initialForm)
 
       <div className="card-content box-shadow-1">
         <div className="front-content-card">
-          <h2>Frente</h2>
-          <textarea onChange={handleChange} value={card.front}  name="front" id="" cols="30" rows="10"></textarea>
+          {/* <h2>Frente</h2> */}
+          <textarea onChange={handleChange} placeholder='FRENTE' value={card.front}  name="front" id="" cols="30" rows="10"></textarea>
           
         </div>
 
 
 <div className="back-content-card">
-          <h2>Atrás</h2>
-          <textarea  onChange={handleChange}  value={card.back}  name="back" id="" cols="30" rows="10"></textarea>
+          {/* <h2>Atrás</h2> */}
+          <textarea  onChange={handleChange}  placeholder='ATRÁS' value={card.back}  name="back" id="" cols="30" rows="10"></textarea>
           
 </div>
 

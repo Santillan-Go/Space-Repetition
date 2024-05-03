@@ -13,11 +13,13 @@ export const route=createHashRouter([
     path:"/",
     element: <Layout/> ,
     children:[{index:true,
-    element:<Main/>
+    element:<Main/>,
+
     
     },{
         path:"setting",
         element:<Setting/>
+        
     }]
     
     },{
