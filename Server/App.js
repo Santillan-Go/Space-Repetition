@@ -113,6 +113,8 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
   // res.json({msg:"GOOD"});
 });
 
-app.listen(PORT, () => {
-  console.log(`server running on http://localhost:` + PORT);
-});
+// app.listen(PORT, () => {
+//   console.log(`server running on http://localhost:` + PORT);
+// });
+
+export default app;

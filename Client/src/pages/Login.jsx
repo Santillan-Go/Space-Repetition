@@ -9,20 +9,20 @@ function Login() {
   const [login, setLogin] = useState(null);
   const [found, setFound] = useState(false);
   const [getOne, setGetOne] = useState({});
-const [loaderIn, setLoaderIn] = useState(false)
-  const {user,setUser} = useContext(UserDataInContext)
-  const URL=import.meta.env.VITE_BACKEND||"https://space-repetition-back.onrender.com";
-const goSomewhere=(e, where)=>{
-navigate(where)
-}
+  const [loaderIn, setLoaderIn] = useState(false);
+  const { user, setUser } = useContext(UserDataInContext);
+  const URL =
+    import.meta.env.VITE_BACKEND || "https://server-henna-ten.vercel.app";
+  const goSomewhere = (e, where) => {
+    navigate(where);
+  };
   function getOneUser(user, state) {
-setLoaderIn(true)
+    setLoaderIn(true);
     fetch(`${URL}/one-user`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      mode:"cors",
-      credentials: 'same-origin',
-      body: JSON.stringify(user)
+
+      body: JSON.stringify(user),
     })
       .then((res) => {
         if (res.ok) {
@@ -33,32 +33,25 @@ setLoaderIn(true)
       })
       .then((json) => {
         state(json);
-        
-        setUser(json)
 
-      let inUser={_id:json._id}
-         localStorage.setItem("in", JSON.stringify(inUser));
-           navigate("/");
-          
-     
+        setUser(json);
+
+        let inUser = { _id: json._id };
+        localStorage.setItem("in", JSON.stringify(inUser));
+        navigate("/");
       })
       .catch((err) => {
-        console.log(err);
         setFound(true);
-
       })
-      .finally(()=>{
-        setLoaderIn(false)
+      .finally(() => {
+        setLoaderIn(false);
         setTimeout(() => {
-          setFound(false)
+          setFound(false);
         }, 2000);
-      })
-      
+      });
   }
 
   useEffect(() => {
- 
-
     if (login) {
       getOneUser(login, setGetOne);
     }
@@ -68,11 +61,15 @@ setLoaderIn(true)
     <main className="main-login">
       <h1>Iniciar sesión</h1>
       <div className="contaiter-form">
-{!loaderIn && <Form_User Status={setLogin}  nameBtn={"Iniciar sesión"}/>}
-   {loaderIn&&<Loader_Form text={"Verificando Cuenta..."}/>}
-</div>
+        {!loaderIn && (
+          <Form_User Status={setLogin} nameBtn={"Iniciar sesión"} />
+        )}
+        {loaderIn && <Loader_Form text={"Verificando Cuenta..."} />}
+      </div>
       <div className="failed">{found && <p>This acount doesn't exist</p>}</div>
-      <button onClick={(e)=>goSomewhere(e,"/signup")} className="login-btn">Crear Cuenta</button>
+      <button onClick={(e) => goSomewhere(e, "/signup")} className="login-btn">
+        Crear Cuenta
+      </button>
     </main>
   );
 }

@@ -17,7 +17,7 @@ let deck = {
 function DeckPage() {
   //CONTEXTS
   const { decks, validate, setDeck } = useContext(DeckContext);
- const [currentD,setCurrentD]=useState(deck)
+  const [currentD, setCurrentD] = useState(deck);
   const { user, loader, setLoader, setUser } = useContext(UserDataInContext);
   const { studyToday, setStudyToday, showCardFocusOn } =
     useContext(StudyTodayContext);
@@ -27,8 +27,7 @@ function DeckPage() {
   const [study, setStudy] = useState(false);
   const [create, setCreate] = useState(false);
   const URL =
-    import.meta.env.VITE_BACKEND ||
-    "https://space-repetition-back.onrender.com";
+    import.meta.env.VITE_BACKEND || "https://server-henna-ten.vercel.app";
   //-------
 
   //ID DECK
@@ -64,21 +63,17 @@ function DeckPage() {
         `${URL}/decks/cards/${inU._id}/${id}/${cardID}`,
         { nextTime, lastReviewDate }
       );
-      console.log(result);
     };
     UpdateTime();
     setDeck(UpdateTimeDeck);
   };
-  let {name,cards}=currentD ||{name: "Default Name", cards: []};
+  let { name, cards } = currentD || { name: "Default Name", cards: [] };
 
-  useEffect(()=>{
-    const deckReal=decks.find(d=> d.id===parseInt(id));
-   
-console.log("I am here becuse this component has rendered")
-console.log("new changes")
-console.log(deckReal)
-setCurrentD(deckReal)
-  },[decks])
+  useEffect(() => {
+    const deckReal = decks.find((d) => d.id === parseInt(id));
+
+    setCurrentD(deckReal);
+  }, [decks]);
   useEffect(() => {
     const root = document.documentElement;
     const color_user = localStorage.getItem("color");
@@ -88,13 +83,11 @@ setCurrentD(deckReal)
   const inUser = JSON.parse(localStorage.getItem("in"));
 
   useEffect(() => {
-    console.log("user has changed");
     if (user._id && decks.length > 0) {
       deck = decks.find((d) => d.id === parseInt(id));
       // name = deck.name;
       // cards = deck.cards;
-      setCurrentD(deck)
-    
+      setCurrentD(deck);
     } else {
       setLoader(true);
       async function GetUserIn() {
@@ -104,9 +97,9 @@ setCurrentD(deckReal)
         );
         let decks = result.decks;
         deck = decks.find((d) => d.id === parseInt(id));
-        setCurrentD(deck)
-      //  name = deck.name;
-      //   cards = deck.cards;
+        setCurrentD(deck);
+        //  name = deck.name;
+        //   cards = deck.cards;
         setUser(result);
         setLoader(false);
       }
@@ -200,7 +193,7 @@ setCurrentD(deckReal)
           </div>
         </main>
       ) : (
-       <Loader/>
+        <Loader />
       )}
     </>
   );
