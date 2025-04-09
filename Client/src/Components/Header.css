@@ -1,87 +1,79 @@
-:root{
-  
-    --header-height:50px;
+:root {
+  --header-height: 50px;
 }
 
-header{
-    width: 100%;
-
-    height: var(--header-height);
- position: fixed;
- bottom: 0;   
+header {
+  width: 100%;
+  background-color: rgba(238, 238, 238, 0.5);
+  height: var(--header-height);
+  position: fixed;
+  bottom: 0;
 }
 
-nav{
-    width: 100%;
-    background-color: rgb(238, 238, 238);
- gap: .5rem ;
- display: flex;
- justify-content: space-evenly;
- padding: .3rem .5rem;
+nav {
+  width: 100%;
+
+  gap: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.3rem 0.5rem;
 }
 
-nav *{
-    flex-grow: 1;
-    height:40px ;
-    border: none;
+nav * {
+  flex-grow: 1;
+  /* // height: 40px; */
+  border: none;
 }
 
-nav  svg:hover{
-    cursor: pointer;
-    opacity: 75%;
+nav svg:hover {
+  cursor: pointer;
+  opacity: 75%;
 }
 
-
-
-
-.add-btn{
-    border: thin solid var(--main-color);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    text-align: center;
-    bottom: .5rem;
-    transform: translate(-50%,0);
+.add-btn {
+  border: thin solid var(--main-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  text-align: center;
+  bottom: 0.5rem;
+  transform: translate(-50%, 0);
 }
-.container-add{
- position: relative;   
- text-align: center;
- 
+.container-add {
+  position: relative;
+  text-align: center;
 }
-@media screen  and (min-width:450px) {
-    header{
-       position: sticky;
-       top: 0;
-       height: 60px;
-       display: flex;
-       align-items: center;
-       background-color: rgb(255, 255, 255);
-    }
- .add-btn{
+@media screen and (min-width: 450px) {
+  header {
+    position: sticky;
+    top: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .add-btn {
     bottom: 0;
-    top: .5rem;
+    top: 0.5rem;
     width: 60px;
     height: 60px;
-    transform: translate(0%,0%);
-    background-color: inherit;
-
-}
-.container-add{
+    transform: translate(0%, 0%);
+    /* background-color: inherit; */
+  }
+  .container-add {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: inherit;
-}
+    /* background-color: inherit; */
+  }
 
-    nav{
+  nav {
     height: 100%;
     align-items: center;
     width: 50%;
     margin: 0 auto;
-    background-color: inherit;
-    }
-   nav > button {
-    background-color: inherit;
-   }
+    /* background-color: inherit; */
+  }
+  /* nav > button {
+    background-color: inherit; */
 }

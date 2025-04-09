@@ -1,5 +1,6 @@
 import "./StudyView.css";
 import { programNextReview } from "../Logic/SpaceRepeticion.js";
+import { ArrowBack, Close, Replay, CheckCircle } from "@mui/icons-material";
 import { useContext } from "react";
 import { StudyTodayContext } from "../Context/StudyTodayContext.jsx";
 
@@ -12,13 +13,10 @@ function StudyView({ id, validate, study, setSudy, showCard, decks }) {
   const spaceR = ({ level }) => {
     let currentDate = new Date();
     let lastReviewDate = "";
-    //JUST FOR GOOD
-    //let lastReviewDate=focus.lastReviewDate;
     const nextTime = programNextReview({
       level,
       lastReviewDate: focus.lastReviewDate,
     });
-    //JUST FOR GOOD
     if (level === "good") {
       lastReviewDate = currentDate;
       focus.lastReviewDate = lastReviewDate;
@@ -35,132 +33,92 @@ function StudyView({ id, validate, study, setSudy, showCard, decks }) {
   };
 
   return (
-    <section className="viex-card">
-      <button className="a-back" onClick={(e) => validate(e, setSudy, study)}>
-        <img src="/back.svg" alt="" />
-      </button>
+    <section className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="w-full max-w-2xl bg-[#1e293b]/80 backdrop-blur-md rounded-2xl p-6 animate-fadeIn">
+        {/* Back Button */}
+        <button
+          onClick={(e) => validate(e, setSudy, study)}
+          className="mb-6 text-white/60 hover:text-white transition-colors flex items-center gap-2"
+        >
+          <ArrowBack /> <span>Back to Deck</span>
+        </button>
 
-      <div className="card-content-study box-shadow-1">
-        {studyToday.length > 0 ? (
-          <>
-            <div className="front-content-card-study">
-              <h2>FRENTE</h2>
-              <p className="text-p">{focus.front}</p>
-            </div>
-            <div className="back-content-card-study">
-              <p className={`text-p ${showAnswer ? "back" : ""}`}>
-                {showAnswer && <h2 className="back-response-text">ATRÁS</h2>}
-                {showAnswer && focus.back}
-              </p>
-            </div>
-          </>
-        ) : (
-          <h2 className="congratulation-cards-text">
-            !Felicidades Has terminado!
-          </h2>
-        )}
-      </div>
-
-      {studyToday.length > 0 ? (
-        <div className="btns-card">
-          {showAnswer ? (
+        {/* Card Content */}
+        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mb-6 min-h-[300px] flex flex-col">
+          {studyToday.length > 0 ? (
             <>
-              <button
-                className="btn-close-card"
-                onClick={(e) => {
-                  showCardFocusOn({ id, decks });
-                  spaceR({ level: "hard" });
-                }}
+              <div className="mb-8">
+                <h2 className="text-white/60 text-sm mb-2">Front</h2>
+                <p className="text-white text-xl">{focus.front}</p>
+              </div>
+
+              <div
+                className={`mt-auto transition-all duration-300 ${
+                  showAnswer ? "opacity-100" : "opacity-0"
+                }`}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="ionicon"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                    d="M368 368L144 144M368 144L144 368"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={(e) => {
-                  showCardFocusOn({ id, decks });
-                  spaceR({ level: "again" });
-                }}
-                className="btn-repeat"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="ionicon"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                    d="M320 120l48 48-48 48"
-                  />
-                  <path
-                    d="M352 168H144a80.24 80.24 0 00-80 80v16M192 392l-48-48 48-48"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                  />
-                  <path
-                    d="M160 344h208a80.24 80.24 0 0080-80v-16"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                  />
-                </svg>
-              </button>
-              <button
-                className="btn-good"
-                onClick={(e) => {
-                  showCardFocusOn({ id, decks });
-                  spaceR({ level: "good" });
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="ionicon"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="32"
-                    d="M464 128L240 384l-96-96M144 384l-96-96M368 128L232 284"
-                  />
-                </svg>
-              </button>
+                {showAnswer && (
+                  <>
+                    <h2 className="text-white/60 text-sm mb-2">Back</h2>
+                    <p className="text-white text-xl">{focus.back}</p>
+                  </>
+                )}
+              </div>
             </>
           ) : (
-            <button
-              className="show-answer-card"
-              onClick={() => setAnswer(true)}
-            >
-              {" "}
-              Mostar Respuesta
-            </button>
+            <div className="flex flex-col items-center justify-center h-full">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Congratulations! You've finished! 🎉
+              </h2>
+              <span className="text-6xl">🥰</span>
+            </div>
           )}
         </div>
-      ) : (
-        <h2 className="congratulation-cards-emoji">🥰</h2>
-      )}
+
+        {/* Action Buttons */}
+        {studyToday.length > 0 && (
+          <div className="flex justify-center gap-4">
+            {showAnswer ? (
+              <>
+                <button
+                  onClick={(e) => {
+                    showCardFocusOn({ id, decks });
+                    spaceR({ level: "hard" });
+                  }}
+                  className="p-4 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-500 transition-all duration-200"
+                >
+                  <Close className="text-3xl" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    showCardFocusOn({ id, decks });
+                    spaceR({ level: "again" });
+                  }}
+                  className="p-4 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-500 transition-all duration-200"
+                >
+                  <Replay className="text-3xl" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    showCardFocusOn({ id, decks });
+                    spaceR({ level: "good" });
+                  }}
+                  className="p-4 rounded-xl bg-green-500/20 hover:bg-green-500/30 text-green-500 transition-all duration-200"
+                >
+                  <CheckCircle className="text-3xl" />
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setAnswer(true)}
+                className="px-8 py-3 bg-[var(--main-color)] hover:bg-[var(--main-color)]/80 text-white font-semibold rounded-xl transition-all duration-200"
+              >
+                Show Answer
+              </button>
+            )}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

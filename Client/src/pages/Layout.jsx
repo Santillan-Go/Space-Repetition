@@ -71,20 +71,39 @@ function Layout() {
     <>
       <Header setAdd={setAdd} add={add} addDeck={addDeck} />
 
-      <section className={`modal-add ${add ? "" : "none"}`}>
-        <div className="content-modal">
-          <h2 className="text-center">Crear Mazo</h2>
+      <section
+        className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm ${
+          add ? "" : "hidden"
+        }`}
+      >
+        <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+            Create New Deck
+          </h2>
 
-          <form onSubmit={newDeck} className="form-add-modal">
+          <form onSubmit={newDeck} className="space-y-6">
             <input
               type="text"
               name="deck"
-              placeholder="Nombre del Mazo"
+              placeholder="Deck Name"
               autoComplete="off"
+              className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-sm border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] transition-all"
             />
-            <div className="btns-add">
-              <input type="submit" value="Crear" />
-              <input type="button" onClick={addDeck} value="Cancelar" />
+
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <button
+                type="submit"
+                className="px-6 py-2.5 rounded-xl bg-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/80 transition-all duration-200"
+              >
+                Create
+              </button>
+              <button
+                type="button"
+                onClick={addDeck}
+                className="px-6 py-2.5 rounded-xl border-2 border-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/20 transition-all duration-200"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>

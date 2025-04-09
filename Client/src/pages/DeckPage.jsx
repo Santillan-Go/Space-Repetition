@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ArrowBack } from "@mui/icons-material";
 import { Link, useParams } from "react-router-dom";
 import { DeckContext } from "../Context/DecksContext";
 
@@ -140,24 +141,48 @@ function DeckPage() {
   let showCard = {
     UpdateDeckCards,
   };
+
+  const studyViewProps = {
+    validate,
+    decks,
+    setSudy: setStudy,
+    study,
+    id,
+    showCard,
+  };
+
+  const createViewProps = {
+    NewCardToCurrentDeck,
+    validate,
+    create,
+    setCreate,
+  };
+
   return (
     <>
       {!loader ? (
-        <main className="main-deck-page">
-          <Link className="a-back" to="/">
-            <img src="/back.svg" alt="" />
+        <main className="min-h-screen bg-gradient-to-br from-[var(--main-color)]/5 to-[var(--main-color)]/20 backdrop-blur-sm p-4">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-4 py-2 text-white/90 hover:text-white transition-colors duration-200"
+          >
+            <ArrowBack fontSize="large" />
           </Link>
-          <div className="content-deck">
-            <article className="deck-info-v">
-              <h1> {name}</h1>
-              <h2>Cartas: {cards.length}</h2>
+
+          <div className="max-w-4xl mx-auto mt-8">
+            <article className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl mb-8">
+              <h1 className="text-3xl font-bold text-white mb-2">{name}</h1>
+              <h2 className="text-white/80 text-lg">
+                Cards: <span className="font-semibold">{cards.length}</span>
+              </h2>
             </article>
-            <article className="btns-deck">
+
+            <article className="flex flex-wrap gap-4 justify-center">
               <button
                 onClick={(e) => validate(e, setCreate, create)}
-                className="btn-add"
+                className="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl text-white font-semibold transition-all duration-200 flex items-center gap-2"
               >
-                Agregar Carta
+                <span className="text-lg">+ Add Card</span>
               </button>
 
               <button
@@ -165,31 +190,14 @@ function DeckPage() {
                   validate(e, setStudy, study);
                   showCardFocusOn({ id, decks });
                 }}
-                className="btn-study"
+                className="px-6 py-3 bg-[var(--main-color)] hover:bg-[var(--main-color)]/80 rounded-xl text-white font-semibold transition-all duration-200 flex items-center gap-2"
               >
-                Estudiar
+                <span className="text-lg">Study Now</span>
               </button>
             </article>
 
-            {study && (
-              <StudyView
-                validate={validate}
-                decks={decks}
-                setSudy={setStudy}
-                study={study}
-                id={id}
-                showCard={showCard}
-              />
-            )}
-            {/*ADD NEW CARDS WITH API*/}
-            {create && (
-              <CreateView
-                NewCardToCurrentDeck={NewCardToCurrentDeck}
-                validate={validate}
-                create={create}
-                setCreate={setCreate}
-              />
-            )}
+            {study && <StudyView {...studyViewProps} />}
+            {create && <CreateView {...createViewProps} />}
           </div>
         </main>
       ) : (

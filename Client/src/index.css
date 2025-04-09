@@ -1,71 +1,71 @@
-:root{
---main-color:rgb(63, 63, 246);
---text-color:white;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+:root {
+  --main-color: rgb(63, 63, 246);
+  --text-color: white;
 }
 
-html{
+html {
   font-size: 16px;
   box-sizing: border-box;
   scroll-behavior: smooth;
-
 }
 
 *,
 *:before,
-*:after{
+*:after {
   box-sizing: inherit;
   padding: 0%;
   margin: 0%;
 }
 
-body{
+body {
   font-family: sans-serif;
-  background-color:var(--main-color);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  min-height: 100vh;
 }
 
-img{
+img {
   max-width: 100%;
-height: auto;
+  height: auto;
 }
 
-.main{
+.main {
   width: 100%;
 
-
-padding: .5rem;
+  padding: 0.5rem;
 }
 
-.modal-add{
+.modal-add {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
- background-color:transparent;
-display: flex;
-flex-direction: column;
-justify-content: center;
-
- padding: 1rem;
- 
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
 }
 
-.content-modal{
+.content-modal {
   /* max-width: 600px; */
   width: 100%;
   height: 250px;
-background-color: white;
-box-shadow: 0rem 2rem 4rem  gray;
-/* border-radius: 1rem; */
-border: thick solid var(--main-color) ;
-padding: 1rem;
-border-radius: 1rem;
-margin: 0% auto;
-
+  /* background-color: white; */
+  /* box-shadow: 0rem 2rem 4rem gray; */
+  /* border-radius: 1rem; */
+  /* border: thick solid var(--main-color); */
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 0% auto;
 }
 
-.form-add-modal{
+.form-add-modal {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -73,18 +73,17 @@ margin: 0% auto;
   height: 80%;
 }
 
-.form-add-modal input[type="text"]{
+.form-add-modal input[type="text"] {
   height: 50px;
   border-radius: 1rem;
   outline: none;
   padding-left: 1rem;
   font-size: 1rem;
-  box-shadow: .10rem .20rem 1.2rem  var(--main-color);
+  /* box-shadow: 0.1rem 0.2rem 1.2rem var(--main-color); */
   border: none;
 }
 
-
-.form-add-modal input[type="submit"]{
+.form-add-modal input[type="submit"] {
   height: 35px;
   border-radius: 1rem;
   font-size: 1.3rem;
@@ -93,14 +92,13 @@ margin: 0% auto;
   background-color: rgb(255, 255, 255);
   border: 4px solid var(--main-color);
   color: var(--main-color);
-font-weight: bold;
+  font-weight: bold;
 }
 
-
-.form-add-modal input[type="button"]{
+.form-add-modal input[type="button"] {
   height: 35px;
   color: var(--main-color);
-font-weight: bold;
+  font-weight: bold;
   border-radius: 1rem;
   font-size: 1.3rem;
   width: 115px;
@@ -109,81 +107,88 @@ font-weight: bold;
   border: 4px solid var(--main-color);
 }
 
-.form-add-modal input[type="submit"]:hover{
+.form-add-modal input[type="submit"]:hover {
   background-color: var(--main-color);
   font-weight: bold;
   color: white;
   cursor: pointer;
 }
 
-.form-add-modal input[type="button"]:hover{
-
+.form-add-modal input[type="button"]:hover {
   background-color: var(--main-color);
   font-weight: bold;
   color: white;
   cursor: pointer;
 }
 
-.btns-add{
+.btns-add {
   display: flex;
   justify-content: space-evenly;
 }
 
-
-.text-center{
+.text-center {
   text-align: center;
-  padding: .4rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0.4rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
-.main-deck-page{
-
+.main-deck-page {
   background-color: var(--main-color);
   height: 100vh;
   width: 100%;
 }
 
-
 /*MEDIA QUERIES*/
 
-
-@media screen and (min-width:450px){
-
-  .content-modal{
+@media screen and (min-width: 450px) {
+  .content-modal {
     width: 600px;
     height: 300px;
   }
 
-  .form-add-modal input[type="text"]{
+  .form-add-modal input[type="text"] {
     height: 60px;
     font-size: 1.4rem;
   }
 
-
-
-
-  .form-add-modal input[type="submit"]{
+  .form-add-modal input[type="submit"] {
     height: 45px;
 
     font-size: 1.3rem;
-   color: var(--main-color);
-   font-weight: bold;
-   
+    color: var(--main-color);
+    font-weight: bold;
   }
-  
-  
-  .form-add-modal input[type="button"]{
+
+  .form-add-modal input[type="button"] {
     height: 45px;
 
     font-size: 1.3rem;
     width: 115px;
     color: var(--main-color);
     font-weight: bold;
-   
   }
+}
 
+/* Add after your existing body styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e3a8a #0f172a;
 }

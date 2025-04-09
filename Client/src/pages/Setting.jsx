@@ -1,84 +1,90 @@
-import { useContext, useEffect, useState } from "react";
-import "./Setting.css";
+import { useContext, useState } from "react";
 import { UserDataInContext } from "../Context/UserDataIn";
 import { useNavigate } from "react-router-dom";
+import {
+  LogoutRounded,
+  ColorLens,
+  KeyboardArrowDown,
+} from "@mui/icons-material";
 
 function Setting() {
   const { user } = useContext(UserDataInContext);
-
   const navigate = useNavigate();
-  const [ope, setOpen] = useState(false);
-  const [CHANGE, setCHANGE] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  // const [showColorPicker, setShowColorPicker] = useState(false);
 
-  const logOut = (where) => {
+  const logOut = () => {
     localStorage.removeItem("in");
-
-    navigate(where);
+    navigate("/login");
     window.location.reload();
   };
 
-  const validate = (event, state, currentV) => {
-    if (currentV) return state(false);
-    return state(true);
-  };
-
   const changeColor = (e) => {
-    const root = document.documentElement;
-
-    const newC = e.target.value;
-
-    // Modificar la variable CSS
-    localStorage.setItem("color", newC);
-    root.style.setProperty("--main-color", newC);
+    const newColor = e.target.value;
+    document.documentElement.style.setProperty("--main-color", newColor);
   };
 
-  let username = user.username || "Carlos";
   return (
-    <div className="settting-main">
-      <div className="user">
-        <h1 className="username-log">{username}</h1>
-        <button onClick={() => logOut("/login")} className="log-out btn">
-          Cerrar Sesión
-        </button>
+    <div className="min-h-screen p-6 space-y-6">
+      {/* User Profile Card */}
+      <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-xl mx-auto shadow-xl">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-[var(--main-color)]/20 flex items-center justify-center">
+              <span className="text-xl text-white font-semibold">
+                {user.username?.[0]?.toUpperCase() || "U"}
+              </span>
+            </div>
+            <h1 className="text-2xl font-bold text-white">
+              {user.username || "User"}
+            </h1>
+          </div>
+          <button
+            onClick={logOut}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-white/80 hover:text-white transition-all duration-200"
+          >
+            <LogoutRounded /> Logout
+          </button>
+        </div>
       </div>
 
-      <article className={`show-btns`}>
-        <button
-          className="open-btn "
-          onClick={(e) => validate(e, setOpen, ope)}
+      {/* Settings Panel */}
+      <div className="max-w-xl mx-auto space-y-4">
+        {/* Settings Header */}
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className="bg-white/10 backdrop-blur-md rounded-2xl p-6 cursor-pointer hover:bg-white/15 transition-all duration-200"
         >
-          <img src="/arrow-down.svg" alt="down" />
-        </button>
-
-        <h2>Acciones</h2>
-      </article>
-      <section className={`functions-btns ${ope ? "open" : ""}`}>
-        <button
-          onClick={(e) => validate(e, setCHANGE, CHANGE)}
-          className={`btns-funtions ${ope ? "show-letter" : "none"}`}
-        >
-          <img className="bursh-color" src="/brush.svg"></img>
-        </button>
-      </section>
-
-      <section className={`modal-function ${CHANGE ? "" : "none"}`}>
-        <article>
-          <div className="main-function">
-            <button
-              className="btn-close"
-              onClick={(e) => validate(e, setCHANGE, CHANGE)}
-            >
-              <img src="/close.svg" alt="" />
-            </button>
-            <h3>Selecciona Color:</h3>
-            <input
-              type="color"
-              onChange={changeColor}
-              className="input-color"
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-white">Settings</h2>
+            <KeyboardArrowDown
+              className={`text-white transition-transform duration-200 ${
+                isOpen ? "rotate-180" : ""
+              }`}
             />
           </div>
-        </article>
-      </section>
+        </div>
+
+        {/* Settings Content */}
+        {isOpen && (
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 space-y-6 animate-fadeIn">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <ColorLens className="text-[var(--main-color)]" />
+                <span className="text-white text-lg">Theme Color</span>
+              </div>
+              <input
+                type="color"
+                onChange={changeColor}
+                className="w-12 h-12 rounded-lg cursor-pointer bg-transparent border-2 border-white/10"
+                value={getComputedStyle(document.documentElement)
+                  .getPropertyValue("--main-color")
+                  .trim()}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
