@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "THIS IS THE APP FOR REST API OF DECKS",
   "type": "module",
-  "main": "App.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node App.js",
-    "dev": "nodemon App.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "build": "npm install"
   },
   "keywords": [],
