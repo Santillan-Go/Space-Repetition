@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { User_DB_M } from "./MODEL/Users_DB_M.js";
 import serverless from "@vendia/serverless-express";
-// import { PORT } from "./config.js";
+import { PORT } from "./config.js";
 
 //PROBAR API EN TODOS LOS CASOS
 
@@ -135,5 +135,5 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:` + PORT);
 });
-module.exports = app;
-// export default app;
+// module.exports = app;
+export default app;
