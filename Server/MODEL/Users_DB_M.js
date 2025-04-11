@@ -1,8 +1,11 @@
 import { connectDB, desconnectDB } from "./ConectDB.js";
 import db from "./ConectOneDB.js";
+import bcrypt from "bcrypt";
 
 const db_name = "users_db",
   collectionName = "users";
+
+const SALT_ROUNDS = 10; // number of salt rounds for bcrypt
 
 //CREATE USER
 // CREATE DESK
@@ -12,7 +15,7 @@ const db_name = "users_db",
 const getAllUser = async () => {
   const collection = db.collection(collectionName);
   const result = await collection.find({}).toArray();
-  return result;
+  return result.map((user) => ({ username: user.username, _id: user._id }));
 };
 
 const getUserByName = async ({ username }) => {
@@ -29,8 +32,22 @@ const getOneUser = async ({ body }) => {
   let { username, password } = body;
 
   const collection = db.collection(collectionName);
-  const result = await collection.findOne({ username, password });
-  return result;
+
+  // First find user by username only
+  const user = await collection.findOne({ username });
+
+  if (!user) {
+    return null;
+  }
+
+  // Compare provided password with stored hash
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (isPasswordValid) {
+    return user;
+  }
+
+  return null;
 };
 
 const getOneUserById = async ({ id }) => {
@@ -38,6 +55,7 @@ const getOneUserById = async ({ id }) => {
 
   const collection = db.collection(collectionName);
   const result = await collection.findOne({ _id: id });
+
   return result;
 };
 
@@ -49,9 +67,16 @@ const createOneUser = async ({ input }) => {
   const userExist = await collection.findOne({ username: input.username });
 
   if (userExist) {
-    return { mensaje: "Este usuario ya exite", error: true };
+    return { mensaje: "Este usuario ya existe", error: true };
   } else {
-    const result = await collection.insertOne(input);
+    // Hash password before storing
+    const hashedPassword = await bcrypt.hash(input.password, SALT_ROUNDS);
+    const userWithHashedPassword = {
+      ...input,
+      password: hashedPassword,
+    };
+
+    const result = await collection.insertOne(userWithHashedPassword);
     return result;
   }
 };
@@ -73,6 +98,13 @@ const createOneCard = async ({ deck, user, card }) => {
     { _id: parseInt(user), "decks.id": parseInt(deck) },
     { $push: { "decks.$.cards": card } }
   );
+  return result;
+};
+
+const deleteAllUser = async () => {
+  const collection = db.collection(collectionName);
+  const result = await collection.deleteMany({});
+
   return result;
 };
 
@@ -115,4 +147,5 @@ export const User_DB_M = {
   getAllUser,
   getOneUserById,
   getUserByName,
+  deleteAllUser,
 };

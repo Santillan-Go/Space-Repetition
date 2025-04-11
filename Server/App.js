@@ -1,13 +1,20 @@
 import express from "express";
 import cors from "cors";
 import { User_DB_M } from "./MODEL/Users_DB_M.js";
-import { PORT } from "./config.js";
+// import { PORT } from "./config.js";
 
 //PROBAR API EN TODOS LOS CASOS
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    // origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -15,6 +22,7 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   const result = await User_DB_M.getAllUser();
   res.json(result);
+
   // res.json({msg:"GOOD"});
 });
 
@@ -49,7 +57,9 @@ app.get("/one-user/:id", async (req, res) => {
 
 app.post("/one-user/", async (req, res) => {
   const body = req.body;
+  // console.log(body);
   const result = await User_DB_M.getOneUser({ body });
+
   if (result) {
     res.json(result);
   } else {
@@ -60,6 +70,7 @@ app.post("/one-user/", async (req, res) => {
 ///PARA CREAR USER
 app.post("/users", async (req, res) => {
   let input = req.body;
+
   const username = req.body.username;
   input = { ...input, decks: [] };
   if (!input._id) {
@@ -113,6 +124,13 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
   // res.json({msg:"GOOD"});
 });
 
+//DELETE ALL USERS
+// app.get("/delete/all", async (req, res) => {
+//   const result = await User_DB_M.deleteAllUser();
+//   console.log(result);
+// });
+
+//REMEMBER TO COMMENT THIS, VERCEL DOESN'T NEED THIS, OKAY??
 // app.listen(PORT, () => {
 //   console.log(`server running on http://localhost:` + PORT);
 // });

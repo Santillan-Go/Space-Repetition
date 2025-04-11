@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "description": "THIS IS THE APP FOR REST API OF DECKS",
   "type": "module",
-  "main": "app.js",
+  "main": "App.js",
   "scripts": {
-    "start": "node app.js",
-    "dev":"nodemon app.js"
+    "start": "node App.js",
+    "dev": "nodemon App.js"
   },
   "keywords": [],
   "author": "SANTILLAN-C",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "mongodb": "^6.5.0"
+    "mongodb": "^6.5.0",
+    "nodemon": "^3.1.9"
   }
 }
