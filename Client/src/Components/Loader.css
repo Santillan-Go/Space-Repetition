@@ -1,18 +1,40 @@
-.loader-component{
-    background-color: var(--main-color);
-position: fixed;
-top: 0;
-left: 0;
-right: 0%;
-bottom: 0%;
-background-color: white;
-display: flex;
-align-items: center;
-justify-content: center;
+.loader-component {
+  background-color: var(--main-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0%;
+  bottom: 0%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.loader-component img{
-    fill: red;
-    width: 90px;
-    height: 90px;
+.loader-component img {
+  fill: red;
+  width: 90px;
+  height: 90px;
+}
+
+@keyframes gradient-rotate {
+  0% {
+    border-color: var(--main-color) transparent transparent transparent;
+  }
+  25% {
+    border-color: transparent var(--main-color) transparent transparent;
+  }
+  50% {
+    border-color: transparent transparent var(--main-color) transparent;
+  }
+  75% {
+    border-color: transparent transparent transparent var(--main-color);
+  }
+  100% {
+    border-color: var(--main-color) transparent transparent transparent;
+  }
+}
+
+.gradient-border {
+  animation: gradient-rotate 0.6s linear infinite;
 }

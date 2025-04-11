@@ -16,7 +16,7 @@ function Setting() {
   const logOut = () => {
     localStorage.removeItem("in");
     navigate("/login");
-    window.location.reload();
+    // window.location.reload();
   };
 
   const changeColor = (e) => {
@@ -28,7 +28,7 @@ function Setting() {
     <div className="min-h-screen p-6 space-y-6">
       {/* User Profile Card */}
       <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-xl mx-auto shadow-xl">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col  md:flex-row items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-[var(--main-color)]/20 flex items-center justify-center">
               <span className="text-xl text-white font-semibold">

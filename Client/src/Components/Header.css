@@ -6,21 +6,21 @@ header {
   width: 100%;
   background-color: rgba(238, 238, 238, 0.5);
   height: var(--header-height);
-  position: fixed;
-  bottom: 0;
+  /* position: fixed;
+
+  bottom: 0; */
 }
 
 nav {
   width: 100%;
 
-  gap: 0.5rem;
+  /* gap: 0.5rem;
   display: flex;
   justify-content: space-evenly;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.5rem; */
 }
 
 nav * {
-  flex-grow: 1;
   /* // height: 40px; */
   border: none;
 }
@@ -46,8 +46,8 @@ nav svg:hover {
 }
 @media screen and (min-width: 450px) {
   header {
-    position: sticky;
-    top: 0;
+    /* position: sticky;
+    top: 0; */
     height: 60px;
     display: flex;
     align-items: center;
@@ -67,11 +67,14 @@ nav svg:hover {
     /* background-color: inherit; */
   }
 
+  nav * {
+    gap: 20px;
+  }
   nav {
     height: 100%;
     align-items: center;
-    width: 50%;
-    margin: 0 auto;
+    /* width: 50%; */
+    /* margin: 0 auto; */
     /* background-color: inherit; */
   }
   /* nav > button {

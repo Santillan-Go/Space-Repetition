@@ -28,15 +28,20 @@ function Layout() {
   }, []);
 
   const [add, setAdd] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+
   useEffect(() => {
     const root = document.documentElement;
     const color_user = localStorage.getItem("color");
     root.style.setProperty("--main-color", color_user);
   }, []);
 
-  if (!inUser) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!inUser) {
+      navigate("/login");
+    }
+    setAuthChecked(true);
+  }, []);
 
   const { setDeck, decks } = useContext(DeckContext);
 
@@ -67,40 +72,45 @@ function Layout() {
     e.target.reset();
   };
 
+  if (!authChecked || loader) {
+    return <Loader />;
+  }
+
   return (
     <>
       <Header setAdd={setAdd} add={add} addDeck={addDeck} />
 
+      {/* Modal section - adjusted padding and width for different screens */}
       <section
-        className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm ${
+        className={`fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4 bg-black/60 backdrop-blur-sm ${
           add ? "" : "hidden"
         }`}
       >
-        <div className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all">
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+        <div className="w-[95%] md:w-full max-w-md transform overflow-hidden rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-md p-4 md:p-6 shadow-xl transition-all">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">
             Create New Deck
           </h2>
 
-          <form onSubmit={newDeck} className="space-y-6">
+          <form onSubmit={newDeck} className="space-y-4 md:space-y-6">
             <input
               type="text"
               name="deck"
               placeholder="Deck Name"
               autoComplete="off"
-              className="w-full px-4 py-3 rounded-xl bg-white/20 backdrop-blur-sm border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] transition-all"
+              className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg md:rounded-xl bg-white/20 backdrop-blur-sm border border-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] transition-all"
             />
 
-            <div className="flex items-center justify-center gap-4 mt-6">
+            <div className="flex items-center justify-center gap-3 md:gap-4 mt-4 md:mt-6">
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-xl bg-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/80 transition-all duration-200"
+                className="px-4 md:px-6 py-2 md:py-2.5 rounded-lg md:rounded-xl bg-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/80 transition-all duration-200"
               >
                 Create
               </button>
               <button
                 type="button"
                 onClick={addDeck}
-                className="px-6 py-2.5 rounded-xl border-2 border-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/20 transition-all duration-200"
+                className="px-4 md:px-6 py-2 md:py-2.5 rounded-lg md:rounded-xl border-2 border-[var(--main-color)] text-white font-semibold hover:bg-[var(--main-color)]/20 transition-all duration-200"
               >
                 Cancel
               </button>
@@ -108,7 +118,8 @@ function Layout() {
           </form>
         </div>
       </section>
-      <main className="main">
+
+      <main className="main mb-16 md:mb-0 px-2 md:px-4">
         <Outlet />
       </main>
 
