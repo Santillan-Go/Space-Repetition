@@ -126,9 +126,10 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
 });
 
 //REMEMBER TO COMMENT THIS, VERCEL DOESN'T NEED THIS, OKAY??
-app.listen(PORT, () => {
-  console.log(`server running on http://localhost:` + PORT);
-});
+// app.listen(PORT, () => {
+//   console.log(`server running on http://localhost:${PORT}`);
+// });
+
 // module.exports = app;
 
 export const handler = serverless(app);

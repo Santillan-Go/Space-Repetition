@@ -9,6 +9,9 @@
     "dev": "nodemon api/index.js",
     "build": "npm install"
   },
+  "engines": {
+    "node": ">=18.x"
+  },
   "keywords": [],
   "author": "SANTILLAN-C",
   "license": "MIT",
