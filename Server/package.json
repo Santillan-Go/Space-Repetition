@@ -16,7 +16,7 @@
   "author": "SANTILLAN-C",
   "license": "MIT",
   "dependencies": {
-    "@vendia/serverless-express": "^4.12.6",
+    "@codegenie/serverless-express": "^4.16.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.21.2",

@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { User_DB_M } from "../MODEL/Users_DB_M.js";
-import serverless from "@vendia/serverless-express";
+import serverlessExpress from "@codegenie/serverless-express";
 import { PORT } from "../config.js";
 
 //PROBAR API EN TODOS LOS CASOS
@@ -132,4 +132,4 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
 
 // module.exports = app;
 
-export const handler = serverless(app);
+export default serverlessExpress({ app });
