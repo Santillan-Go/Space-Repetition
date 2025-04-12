@@ -125,12 +125,6 @@ app.patch("/decks/cards/:user/:deck/:card", async (req, res) => {
   // res.json({msg:"GOOD"});
 });
 
-//DELETE ALL USERS
-// app.get("/delete/all", async (req, res) => {
-//   const result = await User_DB_M.deleteAllUser();
-//   console.log(result);
-// });
-
 //REMEMBER TO COMMENT THIS, VERCEL DOESN'T NEED THIS, OKAY??
 app.listen(PORT, () => {
   console.log(`server running on http://localhost:` + PORT);
